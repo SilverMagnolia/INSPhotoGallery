@@ -138,15 +138,15 @@ open class INSPhotosOverlayView: UIView , INSPhotosOverlayViewable {
     }
     
     @objc private func actionButtonTapped(_ sender: UIBarButtonItem) {
-        if let currentPhoto = currentPhoto {
-            currentPhoto.loadImageWithCompletionHandler({ [weak self] (image, error) -> () in
-                if let image = (image ?? currentPhoto.thumbnailImage) {
-                    let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-                    activityController.popoverPresentationController?.barButtonItem = sender
-                    self?.photosViewController?.present(activityController, animated: true, completion: nil)
-                }
-            });
-        }
+//        if let currentPhoto = currentPhoto {
+//            currentPhoto.loadImageWithCompletionHandler({ [weak self] (image, error) -> () in
+//                if let image = (image ?? currentPhoto.thumbnailImage) {
+//                    let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+//                    activityController.popoverPresentationController?.barButtonItem = sender
+//                    self?.photosViewController?.present(activityController, animated: true, completion: nil)
+//                }
+//            });
+//        }
     }
     
     @objc private func deleteButtonTapped(_ sender: UIBarButtonItem) {
