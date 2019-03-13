@@ -28,14 +28,15 @@ import UIKit
     var thumbnailImage: UIImage? { get }
     @objc optional var isDeletable: Bool { get }
     
-    func loadImageWithCompletionHandler(_ completion: @escaping (_ image: UIImage?, _ error: Error?) -> ())
-    func loadThumbnailImageWithCompletionHandler(_ completion: @escaping (_ image: UIImage?, _ error: Error?) -> ())
+    func loadImageWithCompletionHandler(_ completion: @escaping (_ imageData: Data?, _ error: Error?) -> Void)
+    func loadThumbnailImageWithCompletionHandler(_ completion: @escaping (_ image: UIImage?, _ error: Error?) -> Void)
     
     var attributedTitle: NSAttributedString? { get }
 }
 
 @objc open class INSPhoto: NSObject, INSPhotoViewable {
     @objc open var image: UIImage?
+    @objc open var imageData: Data?
     @objc open var thumbnailImage: UIImage?
     @objc open var isDeletable: Bool
     
@@ -62,13 +63,13 @@ import UIKit
         self.isDeletable = false
     }
     
-    @objc open func loadImageWithCompletionHandler(_ completion: @escaping (_ image: UIImage?, _ error: Error?) -> ()) {
-        if let image = image {
-            completion(image, nil)
+    @objc open func loadImageWithCompletionHandler(_ completion: @escaping (_ imageData: Data?, _ error: Error?) -> Void) {
+        if let data = imageData {
+            completion(data, nil)
             return
         }
-        loadImageWithURL(imageURL, completion: completion)
     }
+    
     @objc open func loadThumbnailImageWithCompletionHandler(_ completion: @escaping (_ image: UIImage?, _ error: Error?) -> ()) {
         if let thumbnailImage = thumbnailImage {
             completion(thumbnailImage, nil)
